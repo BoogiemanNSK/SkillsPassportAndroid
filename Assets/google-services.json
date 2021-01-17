@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "383897873639",
+    "firebase_url": "https://skills-passport-db.firebaseio.com",
+    "project_id": "skills-passport-db",
+    "storage_bucket": "skills-passport-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383897873639:android:d4b799a832c8e6210c4642",
+        "android_client_info": {
+          "package_name": "com.FaradaySoftware.SkillsPassport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383897873639-9jf8l3f9t20l4bh9i4rkh766k9ri2oks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjMeIYaGVAZJ6WV06A6gYIQy6hzH9qmUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383897873639-9jf8l3f9t20l4bh9i4rkh766k9ri2oks.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "383897873639-02l8r6pi658hull5lstqf28ojgtus274.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.FaradaySoftware.SkillsPassport"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
