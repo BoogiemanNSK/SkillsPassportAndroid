@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using MenuScripts;
+using MenuScripts.Tasks;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillPrefabGenerator : MonoBehaviour {

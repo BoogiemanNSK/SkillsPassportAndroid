@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MenuScripts.Tasks;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class TheoryController : SpecificTaskController {

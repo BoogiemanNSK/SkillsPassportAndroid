@@ -24,10 +24,10 @@ public class ProgressBar : MonoBehaviour {
         var maxWidth = rect.width;
         
         var position = Requirement.localPosition;
-        position = new Vector3((float) (requiredValue * maxWidth  - Math.Sqrt(HorizontalOffset / aspect)), position.y, position.z);
+        position = new Vector3((float) (requiredValue * maxWidth - Math.Sqrt(HorizontalOffset / aspect)), position.y, position.z);
         Requirement.localPosition = position;
         
-        Bar.sizeDelta = new Vector2((float) (skillValue * maxWidth  - Math.Sqrt(HorizontalOffset / aspect)), Bar.sizeDelta.y);
+        Bar.sizeDelta = new Vector2((float) (skillValue * maxWidth - Math.Sqrt(HorizontalOffset / aspect)), Bar.sizeDelta.y);
         Progress.color = skillValue >= requiredValue ? Color.green : Color.yellow;
     }
 }

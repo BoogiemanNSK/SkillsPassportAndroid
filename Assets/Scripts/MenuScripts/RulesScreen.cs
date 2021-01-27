@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MenuScripts;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RulesScreen : MonoBehaviour {

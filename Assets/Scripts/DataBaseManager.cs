@@ -45,6 +45,7 @@ public static class DataBaseManager {
         public int CharIndex;
         public int[] TimeStamps;
         public float[] Skills;
+        public bool[] SkillCasePassed;
     }
     
     public struct TaskData {
@@ -114,6 +115,7 @@ public static class DataBaseManager {
         var userUpdated = user.Value;
         userUpdated.TimeStamps = new[] {0, 0, 0};
         userUpdated.Skills = new[] {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+        userUpdated.SkillCasePassed = new[] {false, false, false, false, false, false};
         userUpdated.FirstLaunch = true;
         
         SaveUserData(userUpdated, userId);
@@ -124,6 +126,12 @@ public static class DataBaseManager {
     public static async Task<DataSnapshot> GetAllTasksSnapshot() {
         var dataSnapshot = await _database.GetReference(Constants.DBTasksPath).GetValueAsync();
         return dataSnapshot;
+    }
+    
+    public static async Task<TaskData?> LoadTaskDataById(string taskId) {
+        var dataSnapshot = await _database.GetReference(Constants.DBTasksPath + "/" + taskId).GetValueAsync();
+        if (!dataSnapshot.Exists) { return null; }
+        return JsonUtility.FromJson<TaskData>(dataSnapshot.GetRawJsonValue());
     }
 
     // TODO Maybe try to insert objects instead of arrays
@@ -171,6 +179,8 @@ public static class DataBaseManager {
         return answersArray;
     }
     
+    // Not availiable in current version
+    /*
     public static async void CreateTask(TaskData task) {
         var newEntryId = _database.GetReference(Constants.DBTasksPath).Push().Key;
 
@@ -185,14 +195,10 @@ public static class DataBaseManager {
     public static void DeleteTask(string taskId) {
         _database.GetReference(Constants.DBTasksPath + "/" + taskId).RemoveValueAsync();
     }
+    */
     
     /* ANSWERS INTERACTION */
-    
-    public static async Task<AnswerData[]> GetAllAnswers() {
-        var dataSnapshot = await _database.GetReference(Constants.DBAnswersPath).GetValueAsync();
-        return !dataSnapshot.Exists ? null : JsonUtility.FromJson<AnswerData[]>(dataSnapshot.GetRawJsonValue());
-    }
-    
+
     public static async void CreateAnswer(AnswerData answer) {
         var newEntryId = _database.GetReference(Constants.DBAnswersPath).Push().Key;
 
@@ -200,10 +206,6 @@ public static class DataBaseManager {
         await _database.GetReference(Constants.DBAnswersPath + "/" + newEntryId).SetRawJsonValueAsync(JsonUtility.ToJson(answer));
     }
     
-    public static void DeleteAnswer(string answerId) {
-        _database.GetReference(Constants.DBAnswersPath + "/" + answerId).RemoveValueAsync();
-    }
-
     public static async void ClearUserAnswers(string userId) {
         var answersData = await GetAllAnswers();
         foreach (var answer in answersData) {
@@ -211,6 +213,20 @@ public static class DataBaseManager {
                 DeleteAnswer(answer.Id);
             }
         }
+    }
+
+    private static async Task<AnswerData[]> GetAllAnswers() {
+        var dataSnapshot = await GetAllAnswersSnapshot();
+        return !dataSnapshot.Exists ? null : JsonUtility.FromJson<AnswerData[]>(dataSnapshot.GetRawJsonValue());
+    }
+    
+    public static async Task<DataSnapshot> GetAllAnswersSnapshot() {
+        var dataSnapshot = await _database.GetReference(Constants.DBAnswersPath).GetValueAsync();
+        return dataSnapshot;
+    }
+
+    private static void DeleteAnswer(string answerId) {
+        _database.GetReference(Constants.DBAnswersPath + "/" + answerId).RemoveValueAsync();
     }
     
     /* SOLVED TASKS INTERACTIONS */

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using IntroScripts;
+using UnityEngine;
 using UnityEngine.UI;
 using Debug = System.Diagnostics.Debug;
 

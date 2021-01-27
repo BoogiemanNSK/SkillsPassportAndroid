@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Firebase.Auth;
+using MenuScripts;
 
 public class SettingsController : MonoBehaviour {
     public MainMenuController MainMenu;
